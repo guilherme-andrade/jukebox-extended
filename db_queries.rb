@@ -32,30 +32,13 @@ def top_ten_artists
 	")
 end
 
-# def frequently_purchased_tracks
-# 	# return an array of tracks that have been bought at least twice
-# 	result = DB.execute("
-# 		SELECT tracks.name, count(tracks.name) AS track_count FROM tracks
-# 		JOIN invoice_lines ON tracks.id = invoice_lines.track_id
-# 		GROUP BY tracks.name
-# 		HAVING track_count >= 2
-# 		ORDER BY track_count DESC
-# 	")
-# 	binding.pry
-# end
-
-# result = list_customers&.length == 59 ? 'well done!'.colorize(:green) : 'no good ☹️'.colorize(:red)
-# puts "The result of list_customers is: #{result}"
-
-# result = list_classical_tracks&.length == 69 ? 'well done!'.colorize(:green) : 'no good ☹️'.colorize(:red)
-# puts "The result of list_classical_tracks is: #{result}"
-
-result = top_ten_artists&.first == ["Iron Maiden", 516] ? 'well done!'.colorize(:green) : 'no good ☹️'.colorize(:red)
-puts "The result of top_ten_artists is: #{result}"
-
-
-# result = frequently_purchased_tracks&.length == 256 ? 'well done!'.colorize(:green) : 'no good ☹️'.colorize(:red)
-# puts "The result of frequently_purchased_tracks is: #{result}"
-
-
-
+def frequently_purchased_tracks
+	# return an array of tracks that have been bought at least twice
+	result = DB.execute("
+		SELECT tracks.name, count(tracks.name) AS track_count FROM tracks
+		JOIN invoice_lines ON tracks.id = invoice_lines.track_id
+		GROUP BY tracks.name
+		HAVING track_count >= 2
+		ORDER BY track_count DESC
+	")
+end
